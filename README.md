@@ -13,6 +13,8 @@ In Deep Sea Destroyers, users will be able to:
 - use the keyboard to move ship freely and shoot projectiles to kill enemy ships
 - level up and gain more powerful projectiles, but face more powerful enemies
 - turn music on or off
+
+
 In addition, this project will include:
 
 - wireframe of basic game layout
