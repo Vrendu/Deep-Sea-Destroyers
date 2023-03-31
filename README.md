@@ -19,3 +19,13 @@ In addition, this project will include:
 
 - wireframe of basic game layout
 - credits and inspirations 
+
+For now, only planning to use Canvas API for this project, may change with time. 
+
+Implementation Timeline:
+
+- Friday Afternoon & Weekend - implement basic game logic and functionality
+- Monday - implementing leveling up functionality, some of the graphics, maybe the sound
+- Tuesday - nailing down the graphics of the game
+- Wednesday - Final touches
+- Thursday Morning - should be finished by this time
