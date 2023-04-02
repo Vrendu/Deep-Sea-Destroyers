@@ -1,3 +1,6 @@
+
+const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+
 class MovingObject {
     constructor(options = {}) {
         this.pos = options.pos;
@@ -14,24 +17,17 @@ class MovingObject {
         ctx.stroke();
     }
 
-    move() {
-        let newxPos = this.pos[0] + this.vel[0];
-        let newyPos = this.pos[1] + this.vel[1];
-        //this.pos = this.game.wrap([newxPos, newyPos]);
-        this.pos = [newxPos, newyPos];
+    move(timeDelta) {
+       
+        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+            offsetX = this.vel[0] * velocityScale,
+            offsetY = this.vel[1] * velocityScale;
+
+
+        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        this.vel = this.game.wrap(this.pos, this.vel);
+
     }
-
-    // isCollidedWith(otherObject) {
-    //     let centerDistance = sqrt((this.pos[0] - otherObject.pos[0]) ** 2 + (this.pos[1] - otherObject.pos[1]) ** 2);
-    //     let sumRadii = this.radius + otherObject.radius;
-
-    //     if (centerDistance < sumRadii) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
 }
 
 export default MovingObject;

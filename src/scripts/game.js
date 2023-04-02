@@ -8,7 +8,6 @@ class Game {
         this.projectiles = [];
         this.ships = [];
         this.addEnemies();
-       // this.addShip();
     }
 
     static BG_COLOR = "#2B65EC";
@@ -76,6 +75,15 @@ class Game {
             (Game.DIM_X - 20)* Math.random(),
             20 + 100 * Math.random()
         ];
+    }
+
+    wrap(pos, vel) {
+        let x_pos = pos[0];
+        let x_vel = vel[0];
+        if (x_pos > Game.DIM_X || x_pos < 0) {
+            x_vel = x_vel * -1;
+        } 
+        return [x_vel, vel[1]];
     }
 }
 
