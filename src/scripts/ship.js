@@ -10,11 +10,16 @@ class Ship extends MovingObject{
     constructor(options) {
         options.radius = Ship.RADIUS;
         options.vel = options.vel || [0, 0];
-        options.color = "red"//options.color || randomColor();
+        options.color = "red";
         super(options);
     }
 
     static RADIUS = 15;
+
+    move(shipVec) {
+        this.pos[0] += shipVec[0];
+        this.pos[1] += shipVec[1];
+    }
 
 }
 

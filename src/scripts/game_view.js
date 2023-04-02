@@ -2,7 +2,7 @@ class GameView{
     constructor(game, ctx) {
         this.game = game;
         this.ctx = ctx;
-        this.game.addShip();
+        this.ship = this.game.addShip();
     }
 
     static MOVES = {
@@ -17,7 +17,8 @@ class GameView{
 
         Object.keys(GameView.MOVES).forEach((k) => {
             const move = GameView.MOVES[k];
-            //key(k, () => { ship.power(move); });
+            key(k, () => { ship.move(move); });
+            
             console.log("ship has moved");
         });
 

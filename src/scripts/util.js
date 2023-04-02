@@ -6,7 +6,7 @@
 
 export function enemyVec(length) {
     //const deg = 2 * Math.PI * Math.random();
-    return scale([0.5, 0], length);
+    return scale([0.8, 0], length);
 }
 
 // Scale the length of a vector by the given amount.
