@@ -2,15 +2,45 @@ class GameView{
     constructor(game, ctx) {
         this.game = game;
         this.ctx = ctx;
+        this.game.addShip();
+    }
 
+    static MOVES = {
+        w: [0, -1],
+        a: [-1, 0],
+        s: [0, 1],
+        d: [1, 0],
+    };
+
+    bindKeyHandlers() {
+        const ship = this.ship;
+
+        Object.keys(GameView.MOVES).forEach((k) => {
+            const move = GameView.MOVES[k];
+            //key(k, () => { ship.power(move); });
+            console.log("ship has moved");
+        });
+
+        //key("space", () => { ship.fireBullet(); });
     }
 
     start() {
-        //setInterval(this.game.moveObjects.bind(this.game), 20);
-        setInterval(this.game.draw.bind(this.game, this.ctx), 20);
-        // setInterval(() => {
-        //     this.game.draw(this.ctx);
-        // }, 20)
+        this.bindKeyHandlers();
+        this.lastTime = 0;
+        // start the animation
+        requestAnimationFrame(this.animate.bind(this));
+    }
+
+    animate(time) {
+        const timeDelta = time - this.lastTime;
+
+        
+        this.game.draw(this.ctx);
+       this.game.step(timeDelta);
+        this.lastTime = time;
+
+        // every call to animate requests causes another call to animate
+        requestAnimationFrame(this.animate.bind(this));
     }
 
 }

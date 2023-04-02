@@ -2,18 +2,19 @@ import MovingObject from "./moving_object";
 
 class Enemy extends MovingObject{
 
-    static RADIUS = 25;
-    static COLOR = "brown";
+    static COLOR = "red";
+    static RADIUS = 15;
 
-    constructor(options = {}){
+    constructor(options = {}) {
+        //this.pos = options.pos;
+        
+        options.pos = options.pos || options.game.generateEnemyPosition();
+        options.color = Enemy.COLOR;
+        options.radius = Enemy.RADIUS;
         super(options);
-        this.pos = options.pos;
-        this.vel = options.vel;
-        this.radius = Enemy.RADIUS;
-        this.color = Enemy.color;
-        this.health = options.health;
     }
 
+    
 }
 
 export default Enemy; 

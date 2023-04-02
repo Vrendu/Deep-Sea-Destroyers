@@ -17,7 +17,8 @@ class MovingObject {
     move() {
         let newxPos = this.pos[0] + this.vel[0];
         let newyPos = this.pos[1] + this.vel[1];
-        this.pos = this.game.wrap([newxPos, newyPos]);
+        //this.pos = this.game.wrap([newxPos, newyPos]);
+        this.pos = [newxPos, newyPos];
     }
 
     // isCollidedWith(otherObject) {
