@@ -7,6 +7,7 @@ class Game {
         this.enemies = [];
         this.projectiles = [];
         this.ships = [];
+        this.points = 0;
         this.addEnemies();
     }
 
@@ -23,7 +24,18 @@ class Game {
 
         this.allObjects().forEach((object) => {
             object.draw(ctx);
+            if (object instanceof Enemy){
+                ctx.font = "15px serif";
+                ctx.fillText(object.health + " HP", object.pos[0] + 20, object.pos[1] + 32);
+            }
         });
+
+        ctx.beginPath();
+        ctx.font = "25px serif"
+        ctx.textAlign = 'right';
+        ctx.fillText("SCORE: " + this.points, 926,600);
+        ctx.fillText("HEALTH: " + this.ships[0].health, 950, 630);
+        ctx.stroke();
     }
 
     allObjects() {
@@ -31,14 +43,47 @@ class Game {
     }
 
     step(delta) {
+        
         this.moveObjects(delta);
-       // this.checkCollisions();
+        this.fireEnemyProjectiles();
+        this.checkCollisions();
+        //console.log(this.ships.length);
+        //console.log(this.enemies.length);
+        //console.log(this.projectiles.length);
+    }
+
+    fireEnemyProjectiles(){
+        this.enemies.forEach((enemy) => {
+            //const random = 6 * Math.random();
+            if (enemy.pos[0] - this.ships[0].pos[0] < 2 && 
+               enemy.pos[0] - this.ships[0].pos[0] > -2){
+                console.log("Enemy in line of sight");
+                enemy.fireProjectile();
+            }           
+        });
+    }
+
+    checkCollisions() {
+        const allObjects = this.allObjects();
+        for (let i = 0; i < allObjects.length - 1; i++) {
+            for (let j = i + 1; j < allObjects.length; j++) {
+                const obj1 = allObjects[i];
+                const obj2 = allObjects[j];
+
+                if (obj1.isCollidedWith(obj2)) {
+                    obj1.collideWith(obj2); 
+                    console.log(obj1.health);
+                   // console.log(obj2.health);
+                }
+            }
+        }
     }
 
     moveObjects(delta) {
         this.allObjects().forEach((object) => {
             object.move(delta);
         });
+        
     }
     
     add(object) {
@@ -84,6 +129,30 @@ class Game {
             x_vel = x_vel * -1;
         } 
         return [x_vel, vel[1]];
+    }
+
+    // Something to update when you can, delegate removing responsibility 
+    // to the objects themselves, as you add more objects, and simplify this code
+    remove(object){
+        switch (true) {
+            case object instanceof Projectile:
+                this.projectiles.splice(this.projectiles.indexOf(object), 1);
+                break;
+            case object instanceof Enemy:
+                this.enemies.splice(this.enemies.indexOf(object), 1);
+                break;
+            case object instanceof Ship:
+                this.ships.splice(this.ships.indexOf(object), 1);
+                break;
+            default:
+                throw new Error("unknown type of object");
+        }
+        if (object instanceof Ship){this.gameOver()};
+    }
+
+    gameOver(){
+
+        console.log("Game Over!");
     }
 }
 

@@ -3,13 +3,14 @@ class GameView{
         this.game = game;
         this.ctx = ctx;
         this.ship = this.game.addShip();
+        this.paused = false;
     }
 
     static MOVES = {
-        w: [0, -1],
-        a: [-1, 0],
-        s: [0, 1],
-        d: [1, 0],
+        w: [0, -10],
+        a: [-10, 0],
+        s: [0, 10],
+        d: [10, 0],
     };
 
     bindKeyHandlers() {
@@ -17,12 +18,10 @@ class GameView{
 
         Object.keys(GameView.MOVES).forEach((k) => {
             const move = GameView.MOVES[k];
-            key(k, () => { ship.move(move); });
-            
-            console.log("ship has moved");
+            key(k, () => { ship.moveShip(move); });
         });
 
-        //key("space", () => { ship.fireBullet(); });
+        key("space", () => { ship.fireProjectile(); });
     }
 
     start() {
@@ -34,14 +33,18 @@ class GameView{
 
     animate(time) {
         const timeDelta = time - this.lastTime;
-
-        
         this.game.draw(this.ctx);
-       this.game.step(timeDelta);
+        this.game.step(timeDelta);
+        
+      
         this.lastTime = time;
+        // Want to add button here to pause, DOM manipulation
 
         // every call to animate requests causes another call to animate
-        requestAnimationFrame(this.animate.bind(this));
+        if(!this.paused){
+            requestAnimationFrame(this.animate.bind(this));
+        }
+        
     }
 
 }

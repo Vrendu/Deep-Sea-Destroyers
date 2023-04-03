@@ -1,15 +1,17 @@
-// export function enemyVec() {
-//     // const deg = 2 * Math.PI * Math.random();
-//     // return scale([Math.sin(deg), Math.cos(deg)], length);
-//     return [0.01,0];
-// }
-
 export function enemyVec(length) {
-    //const deg = 2 * Math.PI * Math.random();
     return scale([0.8, 0], length);
 }
 
-// Scale the length of a vector by the given amount.
+export function projectileVec(scaler){
+    return scale([0, 0.8], scaler);
+}
+
 export function scale(vec, m) {
     return [vec[0] * m, vec[1] * m];
+}
+
+export function dist(pos1, pos2) {
+    return Math.sqrt(
+        Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
+    );
 }
