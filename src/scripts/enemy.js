@@ -1,8 +1,8 @@
-import MovingObject from "./moving_object";
+import GameObject from "./game_object";
 import * as Util from "./util.js";
 import Projectile from "./projectile";
 
-class Enemy extends MovingObject{
+class Enemy extends GameObject{
 
     static COLOR = "black";
     static RADIUS = 15;
@@ -14,7 +14,7 @@ class Enemy extends MovingObject{
         options.color = Enemy.COLOR;
         options.radius = Enemy.RADIUS;
         options.vel = options.vel || Util.enemyVec(Enemy.SPEED);
-        options.health = 150;
+        options.health = 30;
         super(options);
         
     }

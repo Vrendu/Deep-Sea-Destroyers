@@ -27,24 +27,27 @@ class GameView{
     start() {
         this.bindKeyHandlers();
         this.lastTime = 0;
-        // start the animation
+        const pauseButton = document.createElement('button');
+        pauseButton.textContent = 'Pause/Unpause Game';
+
+        pauseButton.onclick = () => {
+           this.paused = !this.paused;
+        };
+        document.body.append(pauseButton);
         requestAnimationFrame(this.animate.bind(this));
     }
 
     animate(time) {
         const timeDelta = time - this.lastTime;
-        this.game.draw(this.ctx);
-        this.game.step(timeDelta);
         
-      
-        this.lastTime = time;
-        // Want to add button here to pause, DOM manipulation
-
-        // every call to animate requests causes another call to animate
-        if(!this.paused){
-            requestAnimationFrame(this.animate.bind(this));
+        if (!this.paused) { 
+            this.game.draw(this.ctx);
+            this.game.step(timeDelta);
         }
-        
+
+        this.lastTime = time;
+
+        requestAnimationFrame(this.animate.bind(this));
     }
 
 }

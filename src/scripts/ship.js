@@ -1,13 +1,14 @@
-import MovingObject from "./moving_object";
+import GameObject from "./game_object";
 import Projectile from "./projectile";
 import * as Util from "./util.js";
-class Ship extends MovingObject{
+class Ship extends GameObject{
     
     constructor(options) {
         options.radius = Ship.RADIUS;
         options.vel = options.vel || [0, 0];
         options.color = "black";
-        options.health = 200;
+        options.health = 30;
+        //options.image = options.image || this.createImage();
         super(options);
         
     }
@@ -35,6 +36,7 @@ class Ship extends MovingObject{
     collideWith(otherObject){
         if (otherObject.vel[1] > 1){
             this.health -= 1;
+            this.game.points -= 5;
             this.game.remove(otherObject);
         }
         if (this.health == 0){

@@ -9,18 +9,19 @@ class Game {
         this.ships = [];
         this.points = 0;
         this.addEnemies();
+        //this.gameOver = false;
     }
 
     static BG_COLOR = "#2B65EC";
-    static DIM_X = 1000;
+    static DIM_X = 700;
     static DIM_Y = 700;
 
     static NUM_ENEMIES = 3;
 
     draw(ctx) {
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        ctx.fillStyle = Game.BG_COLOR;
-        ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+        //ctx.fillStyle = Game.BG_COLOR;
+        //ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
         this.allObjects().forEach((object) => {
             object.draw(ctx);
@@ -29,13 +30,10 @@ class Game {
                 ctx.fillText(object.health + " HP", object.pos[0] + 20, object.pos[1] + 32);
             }
         });
-
-        ctx.beginPath();
         ctx.font = "25px serif"
         ctx.textAlign = 'right';
-        ctx.fillText("SCORE: " + this.points, 926,600);
-        ctx.fillText("HEALTH: " + this.ships[0].health, 950, 630);
-        ctx.stroke();
+        ctx.fillText("SCORE: " + this.points, Game.DIM_X - 50,Game.DIM_Y - 100);
+        ctx.fillText("HEALTH: " + this.ships[0].health, Game.DIM_X - 50, Game.DIM_Y - 50);
     }
 
     allObjects() {
@@ -43,13 +41,18 @@ class Game {
     }
 
     step(delta) {
-        
         this.moveObjects(delta);
         this.fireEnemyProjectiles();
         this.checkCollisions();
-        //console.log(this.ships.length);
-        //console.log(this.enemies.length);
-        //console.log(this.projectiles.length);
+        this.deleteProjectilesOutOfBounds();
+    }
+
+    deleteProjectilesOutOfBounds(){
+        this.projectiles.forEach((proj) => {
+            if (proj.pos[1] > Game.DIM_Y || proj.pos[1] < 0){
+                this.remove(proj);
+            }
+        })
     }
 
     fireEnemyProjectiles(){
@@ -57,7 +60,7 @@ class Game {
             //const random = 6 * Math.random();
             if (enemy.pos[0] - this.ships[0].pos[0] < 2 && 
                enemy.pos[0] - this.ships[0].pos[0] > -2){
-                console.log("Enemy in line of sight");
+                //console.log("Enemy in line of sight");
                 enemy.fireProjectile();
             }           
         });
@@ -72,8 +75,6 @@ class Game {
 
                 if (obj1.isCollidedWith(obj2)) {
                     obj1.collideWith(obj2); 
-                    console.log(obj1.health);
-                   // console.log(obj2.health);
                 }
             }
         }
@@ -106,7 +107,7 @@ class Game {
 
     addShip() {
         const ship = new Ship({
-            pos: [500, 600],
+            pos: [300, 600],
             game: this
         });
 
@@ -148,11 +149,35 @@ class Game {
                 throw new Error("unknown type of object");
         }
         if (object instanceof Ship){this.gameOver()};
+        if (this.enemies.length === 0){
+            this.gameOver(); // for now, but I want to refactor to have more levels
+        }
     }
 
     gameOver(){
+        this.gameOver = true;
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
 
-        console.log("Game Over!");
+        const messageText = document.createElement("p");
+        messageText.textContent = "Game Over!";
+
+        const restartButton = document.createElement("button");
+        restartButton.textContent = "Restart Game";
+        restartButton.addEventListener("click", () => {
+            this.restart();
+            document.body.removeChild(messageDiv);
+        });
+
+        messageDiv.appendChild(messageText);
+        messageDiv.appendChild(restartButton);
+
+        document.body.appendChild(messageDiv);
+        //console.log("Game Over!");
+    }
+
+    restart(){
+
     }
 }
 

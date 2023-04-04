@@ -1,6 +1,6 @@
-import MovingObject from "./moving_object";
+import GameObject from "./game_object";
 
-class Projectile extends MovingObject {
+class Projectile extends GameObject {
 
     static RADIUS = 2;
     static SPEED = 15;

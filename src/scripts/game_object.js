@@ -2,7 +2,7 @@
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 import * as Util from "./util.js";
 
-class MovingObject {
+class GameObject {
     constructor(options = {}) {
         this.pos = options.pos;
         this.vel = options.vel;
@@ -10,12 +10,17 @@ class MovingObject {
         this.color = options.color;
         this.game = options.game;
         this.health = options.health;
+        //this.image = options.image;
     }
 
     draw(ctx) {
-        ctx.fillStyle = this.color;
+        //ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI);
+        //this.image.onload = function () {
+            // draw the image on the canvas
+            //ctx.drawImage(this.image, this.pos[0], this.pos[1], 15, 15);
+        //}
         
         ctx.stroke();
     }
@@ -27,7 +32,7 @@ class MovingObject {
     }
 
     collideWith(otherObject){
-        
+
     }
 
     move(timeDelta) {
@@ -47,4 +52,4 @@ class MovingObject {
     }
 }
 
-export default MovingObject;
+export default GameObject;

@@ -4,3 +4,16 @@
 button {
   font-size: 30px;
 }
+
+.game-canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
+img {
+  position: absolute;
+  height: 700px;
+  width: 700px;
+}
