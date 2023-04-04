@@ -7,20 +7,23 @@ class Enemy extends GameObject{
     static RADIUS = 15;
     static SPEED = 4;
 
-    constructor(options = {}) {
-        
-        options.pos = options.pos || options.game.generateEnemyPosition();
+    constructor(options = {}) {   
         options.radius = Enemy.RADIUS;
         options.vel = options.vel || Util.enemyVec(Enemy.SPEED);
-        options.health = 30;
+        options.health = 50;
         super(options);
         this.img = new Image();
         this.img.src = "assets/scout_enemy.png";
-        //this.pos = this.pos || this.game.generateEnemyPosition();
+        this.pos = options.pos;
     }
 
     draw(ctx) {
         ctx.drawImage(this.img, this.pos[0] - 20, this.pos[1] - 10, 120, 120);
+        if (this.health === 0){
+            let image = new Image();
+            image.src = "assets/explosion.png";
+            ctx.drawImage(image, this.pos[0] - 20, this.pos[1] - 10, 120, 120);
+        }
     }
 
     fireProjectile() {
@@ -42,7 +45,7 @@ class Enemy extends GameObject{
             this.game.remove(otherObject);
             this.game.points += 10;
         }
-        if (this.health ==- 0){
+        if (this.health === 0){
             this.game.remove(this);
         }
     }

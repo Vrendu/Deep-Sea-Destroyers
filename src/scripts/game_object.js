@@ -27,8 +27,10 @@ class GameObject {
             offsetX = this.vel[0] * velocityScale, 
             offsetY = this.vel[1] * velocityScale;
 
-
-        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        let newPos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        if (newPos[0] <= 700 && newPos[0] >= 0){
+             this.pos = newPos;
+        }
         this.vel = this.game.wrap(this.pos, this.vel);
 
     }

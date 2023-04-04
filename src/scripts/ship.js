@@ -9,7 +9,7 @@ class Ship extends GameObject{
     constructor(options) {
         options.radius = Ship.RADIUS;
         options.vel = options.vel || [0, 0];
-        options.health = 5;
+        options.health = 50;
         super(options);
         this.img = new Image();
         this.img.src = "assets/ship_1.png";

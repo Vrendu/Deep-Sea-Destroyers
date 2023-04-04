@@ -16,6 +16,12 @@ body {
   background-color: black;
 }
 
+canvas {
+  position: absolute;
+  top: calc(50vh - 240px);
+  left: calc(50vw - 360px);
+}
+
 .start-button {
   font-size: 30px;
   background-color: blueviolet;

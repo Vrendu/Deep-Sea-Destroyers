@@ -46,9 +46,9 @@ class GameView{
     animate(time) {
         const timeDelta = time - this.lastTime;
         
-        if (!this.paused) { 
-            this.game.draw(this.ctx);
+        if (!this.paused) {          
             this.game.step(timeDelta);
+            this.game.draw(this.ctx);
         }
 
         this.lastTime = time;

@@ -1,7 +1,6 @@
 import Enemy from "./enemy.js";
 import Ship from "./ship.js";
 import Projectile from "./projectile.js";
-import GameView from "./game_view.js";
 
 class Game {
     constructor(){
@@ -9,8 +8,8 @@ class Game {
         this.projectiles = [];
         this.ships = [];
         this.points = 0;
-        this.addEnemies();
-        //this.gameOver = false;
+        this.addEnemies();   
+        this.over = false;   
     }
 
     static BG_COLOR = "#2B65EC";
@@ -27,6 +26,7 @@ class Game {
             if (object instanceof Enemy){
                 ctx.font = "20px serif";
                 ctx.fillText(object.health + " HP", object.pos[0] + 20, object.pos[1] + 32);
+                
             }
         });
         ctx.font = "30px serif";
@@ -44,11 +44,7 @@ class Game {
         this.moveObjects(delta);
         this.fireEnemyProjectiles();
         this.checkCollisions();
-        this.deleteProjectilesOutOfBounds();
-        console.log(this.enemies.length);
-        this.enemies.forEach((enemy) => {
-            console.log(enemy.pos);
-        })
+        this.deleteProjectilesOutOfBounds();        
     }
 
     deleteProjectilesOutOfBounds(){
@@ -104,8 +100,10 @@ class Game {
     }
 
     addEnemies() {
+        let count = 0;
         for (let i = 0; i < Game.NUM_ENEMIES; i++) {
-            this.add(new Enemy({ game: this }));
+            count += 1
+            this.add(new Enemy({ game: this, pos: this.generateEnemyPosition(count) }));
         }
     }
 
@@ -120,23 +118,24 @@ class Game {
         return ship;
     }
 
-    generateEnemyPosition() {
-        
-        let x = (Game.DIM_X)* Math.random()
-        let y = 20 + 100 * Math.random()
-
-        // while (this.enemies.some(enemy => Util.dist(enemy.pos, [x,y])) < 200){
-        //     x = (Game.DIM_X - 20) * Math.random()
-        //     y = 20 + 100 * Math.random()
-        // }
-
-        return [x,y];
+    generateEnemyPosition(count) {
+        // for now, manually entering the positions, when refactoring the code
+        // figure out a way to make this more dynamic.
+        if (count === 1){
+            return [70, 100];
+        }
+        else if (count === 2){
+            return [350, 110];
+        } else {
+            return [200, 130];
+        }
     }
 
     wrap(pos, vel) {
         let x_pos = pos[0];
         let x_vel = vel[0];
-        if (x_pos > Game.DIM_X|| x_pos < 0) {
+        if (x_pos >= 669 || x_pos <= 30) {
+            console.log("HELLO!!!!!");
             x_vel = x_vel * -1;
         } 
         return [x_vel, vel[1]];
@@ -165,37 +164,18 @@ class Game {
        
 
     gameOver(){
-        this.gameOver = true;
-        const messageDiv = document.createElement("div");
-        messageDiv.classList.add("message");
-
-        const messageText = document.createElement("p");
-        messageText.textContent = "Game Over!";
-
-        const canvasEl = document.getElementById("game-canvas");
-        const ctx = canvasEl.getContext("2d");
-
+        this.over = true;
         const restartButton = document.createElement("button");
         restartButton.textContent = "Restart Game";
         restartButton.classList = "restart-button";
         restartButton.addEventListener("click", () => {
-            this.restart(ctx);
-            document.body.removeChild(messageDiv);
+            this.restart();
         });
-
-        messageDiv.appendChild(messageText);
-        messageDiv.appendChild(restartButton);
-
-        document.body.appendChild(messageDiv);
-        //console.log("Game Over!");
+        document.body.appendChild(restartButton);
     }
 
-    restart(ctx){
-            this.enemies = [];
-            this.projectiles = [];
-            this.ships = [];
-            this.points = 0;
-           // new GameView(this, ctx).start();
+    restart(){
+            
         }
     
 }

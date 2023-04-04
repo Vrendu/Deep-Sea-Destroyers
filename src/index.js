@@ -9,11 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     canvasEl.height = Game.DIM_Y;
 
     const ctx = canvasEl.getContext("2d");
-    const image = document.createElement("image");
-    image.src = "assets/game_background.png";
-
-    const container = document.getElementById('container');
-    container.appendChild(image);
 
     canvasEl.style.position = 'absolute';
     canvasEl.style.top = '0';
@@ -24,9 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     startbutton.textContent = "Start!";
     startbutton.classList.add("start-button");
     container.append(startbutton);
-
+    
     startbutton.addEventListener("click", () => {
-        const game = new Game();
+        let game = new Game();
         new GameView(game, ctx).start();
         container.removeChild(startbutton);
     });
