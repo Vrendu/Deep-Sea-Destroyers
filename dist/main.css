@@ -7,6 +7,7 @@ button {
 }
 
 img {
+  position: relative;
   height: 700px;
   width: 700px;
 }
@@ -20,6 +21,15 @@ body {
   background-color: blueviolet;
   position: absolute;
   top: 400px;
-  left: 330px;
+  left: 300px;
+  z-index: 1;
+}
+
+.restart-button {
+  font-size: 30px;
+  background-color: blueviolet;
+  position: absolute;
+  top: 400px;
+  left: 270px;
   z-index: 1;
 }

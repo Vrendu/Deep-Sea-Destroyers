@@ -1,12 +1,10 @@
 button{
     font-size: 30px;
-    //align-items: center;
     background-color: blueviolet;
-    //border: black;
 }
 
 img{
-    //position: relative;
+    position: relative;
     height: 700px;
     width: 700px;
 }
@@ -17,11 +15,18 @@ body{
 
 .start-button{
     font-size: 30px;
-    //align-items: center;
     background-color: blueviolet;
     position: absolute;
     top: 400px;
-    left: 330px;
+    left: 300px;
     z-index: 1;
-    //border: black;
+}
+
+.restart-button{
+    font-size: 30px;
+    background-color: blueviolet;
+    position: absolute;
+    top: 400px;
+    left: 270px;
+    z-index: 1;
 }

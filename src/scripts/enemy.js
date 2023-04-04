@@ -4,24 +4,23 @@ import Projectile from "./projectile";
 
 class Enemy extends GameObject{
 
-    static COLOR = "black";
     static RADIUS = 15;
     static SPEED = 4;
 
     constructor(options = {}) {
         
         options.pos = options.pos || options.game.generateEnemyPosition();
-        options.color = Enemy.COLOR;
         options.radius = Enemy.RADIUS;
         options.vel = options.vel || Util.enemyVec(Enemy.SPEED);
         options.health = 30;
         super(options);
         this.img = new Image();
-        this.img.src = "assets/vehicle-2.png";
+        this.img.src = "assets/scout_enemy.png";
+        //this.pos = this.pos || this.game.generateEnemyPosition();
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.pos[0], this.pos[1], 70, 70);
+        ctx.drawImage(this.img, this.pos[0] - 20, this.pos[1] - 10, 120, 120);
     }
 
     fireProjectile() {

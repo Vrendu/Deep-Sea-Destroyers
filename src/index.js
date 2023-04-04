@@ -2,6 +2,7 @@ import Game from "./scripts/game.js";
 import GameView from "./scripts/game_view.js";
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
     const canvasEl = document.getElementById("game-canvas");
     canvasEl.width = Game.DIM_X;
@@ -29,7 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
         new GameView(game, ctx).start();
         container.removeChild(startbutton);
     });
-
-    
     
 });

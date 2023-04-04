@@ -1,6 +1,7 @@
 import Enemy from "./enemy.js";
 import Ship from "./ship.js";
 import Projectile from "./projectile.js";
+import GameView from "./game_view.js";
 
 class Game {
     constructor(){
@@ -20,17 +21,15 @@ class Game {
 
     draw(ctx) {
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-        //ctx.fillStyle = Game.BG_COLOR;
-        //ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
         this.allObjects().forEach((object) => {
             object.draw(ctx);
             if (object instanceof Enemy){
-                ctx.font = "15px serif";
+                ctx.font = "20px serif";
                 ctx.fillText(object.health + " HP", object.pos[0] + 20, object.pos[1] + 32);
             }
         });
-        ctx.font = "25px serif";
+        ctx.font = "30px serif";
         ctx.textAlign = 'right';
         ctx.fillStyle = "white";
         ctx.fillText("SCORE: " + this.points, Game.DIM_X - 50,Game.DIM_Y - 100);
@@ -46,6 +45,10 @@ class Game {
         this.fireEnemyProjectiles();
         this.checkCollisions();
         this.deleteProjectilesOutOfBounds();
+        console.log(this.enemies.length);
+        this.enemies.forEach((enemy) => {
+            console.log(enemy.pos);
+        })
     }
 
     deleteProjectilesOutOfBounds(){
@@ -118,16 +121,22 @@ class Game {
     }
 
     generateEnemyPosition() {
-        return [
-            (Game.DIM_X - 20)* Math.random(),
-            20 + 100 * Math.random()
-        ];
+        
+        let x = (Game.DIM_X)* Math.random()
+        let y = 20 + 100 * Math.random()
+
+        // while (this.enemies.some(enemy => Util.dist(enemy.pos, [x,y])) < 200){
+        //     x = (Game.DIM_X - 20) * Math.random()
+        //     y = 20 + 100 * Math.random()
+        // }
+
+        return [x,y];
     }
 
     wrap(pos, vel) {
         let x_pos = pos[0];
         let x_vel = vel[0];
-        if (x_pos > Game.DIM_X || x_pos < 0) {
+        if (x_pos > Game.DIM_X|| x_pos < 0) {
             x_vel = x_vel * -1;
         } 
         return [x_vel, vel[1]];
@@ -149,11 +158,11 @@ class Game {
             default:
                 throw new Error("unknown type of object");
         }
-        if (object instanceof Ship){this.gameOver()};
-        if (this.enemies.length === 0){
-            this.gameOver(); // for now, but I want to refactor to have more levels
-        }
+        if (object instanceof Ship || this.enemies.length === 0){
+            this.gameOver()
+        };
     }
+       
 
     gameOver(){
         this.gameOver = true;
@@ -163,10 +172,14 @@ class Game {
         const messageText = document.createElement("p");
         messageText.textContent = "Game Over!";
 
+        const canvasEl = document.getElementById("game-canvas");
+        const ctx = canvasEl.getContext("2d");
+
         const restartButton = document.createElement("button");
         restartButton.textContent = "Restart Game";
+        restartButton.classList = "restart-button";
         restartButton.addEventListener("click", () => {
-            this.restart();
+            this.restart(ctx);
             document.body.removeChild(messageDiv);
         });
 
@@ -177,9 +190,14 @@ class Game {
         //console.log("Game Over!");
     }
 
-    restart(){
-
-    }
+    restart(ctx){
+            this.enemies = [];
+            this.projectiles = [];
+            this.ships = [];
+            this.points = 0;
+           // new GameView(this, ctx).start();
+        }
+    
 }
 
 export default Game;
