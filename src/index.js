@@ -2,10 +2,6 @@ import Game from "./scripts/game.js";
 import GameView from "./scripts/game_view.js";
 
 
-const startgame = false;
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const canvasEl = document.getElementById("game-canvas");
     canvasEl.width = Game.DIM_X;
@@ -18,11 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById('container');
     container.appendChild(image);
 
-    // canvasEl.style.position = 'absolute';
-    // canvasEl.style.top = '0';
-    // canvasEl.style.left = '0';
-    // canvasEl.style.zIndex = '1';
+    canvasEl.style.position = 'absolute';
+    canvasEl.style.top = '0';
+    canvasEl.style.left = '0';
+    canvasEl.style.zIndex = '1';
 
-    const game = new Game();
-    new GameView(game, ctx).start();
+    const startbutton = document.createElement("button");
+    startbutton.textContent = "Start!";
+    startbutton.classList.add("start-button");
+    container.append(startbutton);
+
+    startbutton.addEventListener("click", () => {
+        const game = new Game();
+        new GameView(game, ctx).start();
+        container.removeChild(startbutton);
+    });
+
+    
+    
 });

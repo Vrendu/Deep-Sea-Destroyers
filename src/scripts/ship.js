@@ -3,6 +3,8 @@ import Projectile from "./projectile";
 import * as Util from "./util.js";
 class Ship extends GameObject{
     
+    
+    static RADIUS = 15;
     constructor(options) {
         options.radius = Ship.RADIUS;
         options.vel = options.vel || [0, 0];
@@ -10,10 +12,20 @@ class Ship extends GameObject{
         options.health = 30;
         //options.image = options.image || this.createImage();
         super(options);
-        
+        this.img = new Image();
+        this.img.src = "assets/vehicle-1.png";
     }
 
-    static RADIUS = 15;
+    draw(ctx) {
+        ctx.drawImage(this.img, this.pos[0], this.pos[1], 100, 100);
+    }
+    
+
+    draw(ctx){
+         let img = new Image();
+         img.src = "assets/vehicle-1.png";
+         ctx.drawImage(img, this.pos[0], this.pos[1], 100, 100);
+    }
 
     moveShip(shipDir) {
         this.pos[0] += shipDir[0];
@@ -31,6 +43,7 @@ class Ship extends GameObject{
         });
 
         this.game.add(proj);
+        console.log("fired");
     }
 
     collideWith(otherObject){

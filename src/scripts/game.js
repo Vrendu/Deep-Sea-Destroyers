@@ -30,8 +30,9 @@ class Game {
                 ctx.fillText(object.health + " HP", object.pos[0] + 20, object.pos[1] + 32);
             }
         });
-        ctx.font = "25px serif"
+        ctx.font = "25px serif";
         ctx.textAlign = 'right';
+        ctx.fillStyle = "white";
         ctx.fillText("SCORE: " + this.points, Game.DIM_X - 50,Game.DIM_Y - 100);
         ctx.fillText("HEALTH: " + this.ships[0].health, Game.DIM_X - 50, Game.DIM_Y - 50);
     }

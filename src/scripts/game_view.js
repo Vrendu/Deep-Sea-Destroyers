@@ -28,10 +28,16 @@ class GameView{
         this.bindKeyHandlers();
         this.lastTime = 0;
         const pauseButton = document.createElement('button');
-        pauseButton.textContent = 'Pause/Unpause Game';
+        pauseButton.textContent = 'Pause';
 
         pauseButton.onclick = () => {
            this.paused = !this.paused;
+           if (pauseButton.textContent === "Pause"){
+                pauseButton.textContent = "Play";
+           } else {
+                pauseButton.textContent = "Pause";
+           }
+           
         };
         document.body.append(pauseButton);
         requestAnimationFrame(this.animate.bind(this));

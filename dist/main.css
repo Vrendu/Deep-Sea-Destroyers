@@ -3,17 +3,23 @@
   \*************************************************************************************************************************************/
 button {
   font-size: 30px;
-}
-
-.game-canvas {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 1;
+  background-color: blueviolet;
 }
 
 img {
-  position: absolute;
   height: 700px;
   width: 700px;
+}
+
+body {
+  background-color: black;
+}
+
+.start-button {
+  font-size: 30px;
+  background-color: blueviolet;
+  position: absolute;
+  top: 400px;
+  left: 330px;
+  z-index: 1;
 }

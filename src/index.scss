@@ -1,20 +1,27 @@
 button{
     font-size: 30px;
     //align-items: center;
-}
-.game-canvas {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
+    background-color: blueviolet;
+    //border: black;
 }
 
 img{
-    position: absolute;
-    //top: 0px;
-    //left: 0px;
+    //position: relative;
     height: 700px;
     width: 700px;
 }
 
+body{
+    background-color: black;
+}
 
+.start-button{
+    font-size: 30px;
+    //align-items: center;
+    background-color: blueviolet;
+    position: absolute;
+    top: 400px;
+    left: 330px;
+    z-index: 1;
+    //border: black;
+}

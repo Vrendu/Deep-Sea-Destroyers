@@ -16,7 +16,12 @@ class Enemy extends GameObject{
         options.vel = options.vel || Util.enemyVec(Enemy.SPEED);
         options.health = 30;
         super(options);
-        
+        this.img = new Image();
+        this.img.src = "assets/vehicle-2.png";
+    }
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.pos[0], this.pos[1], 70, 70);
     }
 
     fireProjectile() {
