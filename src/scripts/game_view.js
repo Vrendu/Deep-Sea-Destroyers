@@ -1,9 +1,12 @@
+import Game from "./game";
+
 class GameView{
-    constructor(game, ctx) {
-        this.game = game;
+    constructor(ctx) {
+        this.game = new Game(this);
         this.ctx = ctx;
         this.ship = this.game.addShip();
-        this.paused = false;
+        this.paused = false;  
+        this.setUp(false);
     }
 
     static MOVES = {
@@ -12,6 +15,25 @@ class GameView{
         s: [0, 10],
         d: [10, 0],
     };
+
+    setUp(restart) {
+        //this.paused = true;
+        console.log("we have hit setup function");
+        const startbutton = document.createElement("button");
+        startbutton.textContent = "Start!";
+        startbutton.classList.add("start-button");
+        container.append(startbutton);
+        startbutton.addEventListener("click", () => {
+            this.start();
+            container.removeChild(startbutton);
+        });
+        if (restart){
+                cancelAnimationFrame(this.animation);
+                this.game = new Game(this);
+        }
+
+    }
+    
 
     bindKeyHandlers() {
         const ship = this.ship;
@@ -40,7 +62,7 @@ class GameView{
            
         };
         document.body.append(pauseButton);
-        requestAnimationFrame(this.animate.bind(this));
+        this.animation = requestAnimationFrame(this.animate.bind(this));
     }
 
     animate(time) {
@@ -53,7 +75,7 @@ class GameView{
 
         this.lastTime = time;
 
-        requestAnimationFrame(this.animate.bind(this));
+        this.animation = requestAnimationFrame(this.animate.bind(this));
     }
 
 }

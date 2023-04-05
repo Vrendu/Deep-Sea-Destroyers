@@ -1,3 +1,5 @@
+const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+
 import GameObject from "./game_object";
 import Projectile from "./projectile";
 import * as Util from "./util.js";
@@ -18,12 +20,6 @@ class Ship extends GameObject{
     draw(ctx) {
         ctx.drawImage(this.img, this.pos[0] + 15, this.pos[1], 30, 80);
     }
-
-    // draw(ctx){
-    //      let img = new Image();
-    //      img.src = "assets/vehicle-1.png";
-    //      ctx.drawImage(img, this.pos[0], this.pos[1], 100, 100);
-    // }
 
     moveShip(shipDir) {
         this.pos[0] += shipDir[0];

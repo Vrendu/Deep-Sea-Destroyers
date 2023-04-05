@@ -3,13 +3,15 @@ import Ship from "./ship.js";
 import Projectile from "./projectile.js";
 
 class Game {
-    constructor(){
+    constructor(gameview){
         this.enemies = [];
         this.projectiles = [];
         this.ships = [];
         this.points = 0;
         this.addEnemies();   
-        this.over = false;   
+        this.gameview = gameview;
+        //this.over = false;   
+        //this.setUp();
     }
 
     static BG_COLOR = "#2B65EC";
@@ -17,6 +19,8 @@ class Game {
     static DIM_Y = 700;
 
     static NUM_ENEMIES = 3;
+
+   
 
     draw(ctx) {
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
@@ -100,11 +104,13 @@ class Game {
     }
 
     addEnemies() {
+        console.log("added enemies");
         let count = 0;
         for (let i = 0; i < Game.NUM_ENEMIES; i++) {
             count += 1
             this.add(new Enemy({ game: this, pos: this.generateEnemyPosition(count) }));
         }
+        console.log(this);
     }
 
     addShip() {
@@ -158,25 +164,28 @@ class Game {
                 throw new Error("unknown type of object");
         }
         if (object instanceof Ship || this.enemies.length === 0){
-            this.gameOver()
+            this.gameOver();
         };
     }
        
 
     gameOver(){
-        this.over = true;
-        const restartButton = document.createElement("button");
-        restartButton.textContent = "Restart Game";
-        restartButton.classList = "restart-button";
-        restartButton.addEventListener("click", () => {
-            this.restart();
-        });
-        document.body.appendChild(restartButton);
+        if (!this.over){
+            this.over = true;
+            const restartButton = document.createElement("button");
+            restartButton.textContent = "Restart Game";
+            restartButton.classList = "restart-button";
+            restartButton.addEventListener("click", () => {
+                document.body.removeChild(restartButton);
+                this.gameview.setUp(true);  
+            
+            });
+            document.body.appendChild(restartButton);
+        }
+        
     }
 
-    restart(){
-            
-        }
+    
     
 }
 

@@ -10,7 +10,7 @@ class Enemy extends GameObject{
     constructor(options = {}) {   
         options.radius = Enemy.RADIUS;
         options.vel = options.vel || Util.enemyVec(Enemy.SPEED);
-        options.health = 50;
+        options.health = 5;
         super(options);
         this.img = new Image();
         this.img.src = "assets/scout_enemy.png";

@@ -14,16 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     canvasEl.style.top = '0';
     canvasEl.style.left = '0';
     canvasEl.style.zIndex = '1';
+   // let game = new Game();
+   
+    let gameview = new GameView(ctx);
 
-    const startbutton = document.createElement("button");
-    startbutton.textContent = "Start!";
-    startbutton.classList.add("start-button");
-    container.append(startbutton);
-    
-    startbutton.addEventListener("click", () => {
-        let game = new Game();
-        new GameView(game, ctx).start();
-        container.removeChild(startbutton);
-    });
     
 });
