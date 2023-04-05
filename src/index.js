@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvasEl.style.left = '0';
     canvasEl.style.zIndex = '1';
    // let game = new Game();
-   
+  
     let gameview = new GameView(ctx);
 
     

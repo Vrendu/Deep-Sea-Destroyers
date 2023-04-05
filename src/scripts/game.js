@@ -2,6 +2,7 @@ import Enemy from "./enemy.js";
 import Ship from "./ship.js";
 import Projectile from "./projectile.js";
 
+
 class Game {
     constructor(gameview){
         this.enemies = [];
@@ -13,6 +14,7 @@ class Game {
         //this.over = false;   
         //this.setUp();
     }
+
 
     static BG_COLOR = "#2B65EC";
     static DIM_X = 700;
@@ -79,8 +81,42 @@ class Game {
 
                 if (obj1.isCollidedWith(obj2)) {
                     obj1.collideWith(obj2); 
+                    //this.explosionAnimation(obj1);
                 }
             }
+        }
+    }
+    
+
+    explosionAnimation(obj){
+        const explosion = Object.assign({}, explosionAnimation);
+        explosion.x = obj.pos[0];
+        explosion.y = obj.pos[1];
+        // Draw the current frame of the animation at the position of the enemy
+        let context = this.gameview.ctx;
+
+        context.drawImage(
+            spriteSheet,
+            explosion.frames[explosion.currentFrame].x + explosion.startX,
+            explosion.frames[explosion.currentFrame].y + explosion.startY,
+            explosion.frames[explosion.currentFrame].width,
+            explosion.frames[explosion.currentFrame].height,
+            explosion.x,
+            explosion.y,
+            explosion.frames[explosion.currentFrame].width,
+            explosion.frames[explosion.currentFrame].height
+        );
+        // Increment the current frame
+        explosion.currentFrame++;
+        // If the animation is not complete, schedule the next frame
+        if (explosion.currentFrame < explosion.frames.length) {
+            setTimeout(() => {
+                this.explosionAnimation(obj);
+            }, explosion.duration);
+        }
+        // If the animation is complete, call the endCallback function (if provided)
+        else if (explosion.endCallback) {
+            explosion.endCallback();
         }
     }
 
@@ -131,9 +167,9 @@ class Game {
             return [70, 100];
         }
         else if (count === 2){
-            return [350, 110];
+            return [270, 110];
         } else {
-            return [200, 130];
+            return [130, 130];
         }
     }
 

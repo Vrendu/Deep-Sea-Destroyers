@@ -1,12 +1,13 @@
 import Game from "./game";
 
 class GameView{
-    constructor(ctx) {
+    constructor(ctx, paused) {
         this.game = new Game(this);
         this.ctx = ctx;
         this.ship = this.game.addShip();
-        this.paused = false;  
+        this.paused = paused;  
         this.setUp(false);
+        
     }
 
     static MOVES = {
@@ -30,6 +31,7 @@ class GameView{
         if (restart){
                 cancelAnimationFrame(this.animation);
                 this.game = new Game(this);
+                this.ship = this.game.addShip();
         }
 
     }
@@ -47,22 +49,26 @@ class GameView{
     }
 
     start() {
+        //this.pauseButton = this.pauseButton || 
         this.bindKeyHandlers();
         this.lastTime = 0;
-        const pauseButton = document.createElement('button');
+        let pauseButton = document.getElementById('pause-button');
         pauseButton.textContent = 'Pause';
-
+        pauseButton.classList = "pause-button";
         pauseButton.onclick = () => {
            this.paused = !this.paused;
            if (pauseButton.textContent === "Pause"){
                 pauseButton.textContent = "Play";
            } else {
                 pauseButton.textContent = "Pause";
-           }
-           
+           }           
         };
-        document.body.append(pauseButton);
         this.animation = requestAnimationFrame(this.animate.bind(this));
+    }
+
+    foundNoPauseButtons(){
+        let testbutton = document.getElementById("pause-button");
+        return (testbutton === null);
     }
 
     animate(time) {
