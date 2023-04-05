@@ -11,8 +11,6 @@ class Game {
         this.points = 0;
         this.addEnemies();   
         this.gameview = gameview;
-        //this.over = false;   
-        //this.setUp();
     }
 
 
@@ -63,10 +61,8 @@ class Game {
 
     fireEnemyProjectiles(){
         this.enemies.forEach((enemy) => {
-            //const random = 6 * Math.random();
             if (enemy.pos[0] - this.ships[0].pos[0] < 2 && 
                enemy.pos[0] - this.ships[0].pos[0] > -2){
-                //console.log("Enemy in line of sight");
                 enemy.fireProjectile();
             }           
         });
@@ -81,42 +77,8 @@ class Game {
 
                 if (obj1.isCollidedWith(obj2)) {
                     obj1.collideWith(obj2); 
-                    //this.explosionAnimation(obj1);
                 }
             }
-        }
-    }
-    
-
-    explosionAnimation(obj){
-        const explosion = Object.assign({}, explosionAnimation);
-        explosion.x = obj.pos[0];
-        explosion.y = obj.pos[1];
-        // Draw the current frame of the animation at the position of the enemy
-        let context = this.gameview.ctx;
-
-        context.drawImage(
-            spriteSheet,
-            explosion.frames[explosion.currentFrame].x + explosion.startX,
-            explosion.frames[explosion.currentFrame].y + explosion.startY,
-            explosion.frames[explosion.currentFrame].width,
-            explosion.frames[explosion.currentFrame].height,
-            explosion.x,
-            explosion.y,
-            explosion.frames[explosion.currentFrame].width,
-            explosion.frames[explosion.currentFrame].height
-        );
-        // Increment the current frame
-        explosion.currentFrame++;
-        // If the animation is not complete, schedule the next frame
-        if (explosion.currentFrame < explosion.frames.length) {
-            setTimeout(() => {
-                this.explosionAnimation(obj);
-            }, explosion.duration);
-        }
-        // If the animation is complete, call the endCallback function (if provided)
-        else if (explosion.endCallback) {
-            explosion.endCallback();
         }
     }
 
@@ -164,12 +126,12 @@ class Game {
         // for now, manually entering the positions, when refactoring the code
         // figure out a way to make this more dynamic.
         if (count === 1){
-            return [70, 100];
+            return [60, 50];
         }
         else if (count === 2){
-            return [270, 110];
+            return [200, 110];
         } else {
-            return [130, 130];
+            return [100, 160];
         }
     }
 
@@ -216,6 +178,18 @@ class Game {
                 this.gameview.setUp(true);  
             
             });
+            const message = document.createElement("div");
+            message.classList = "end-message"
+            if (this.enemies.length === 0){
+                message.textContent = "You Win!";
+                message.style.color = "yellow";
+            } else if (this.ships.length === 0){
+                message.textContent = "Try Again";
+                message.style.color = "red";
+            }
+            
+
+            document.body.appendChild(message);
             document.body.appendChild(restartButton);
         }
         

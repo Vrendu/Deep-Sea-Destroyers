@@ -11,17 +11,22 @@ img{
 
 body{
     background-color: black;
+    display: flex;
+   justify-content: space-between;
 }
 
 canvas{
+    display: flex;
+    justify-content: space-between;
+}
+
+#game-canvas{
     position: absolute;
     top: calc(50vh - 240px);
     left: calc(50vw - 360px);
     
 }
 .start-button{
-    font-size: 30px;
-    background-color: blueviolet;
     position: absolute;
     top: 400px;
     left: 300px;
@@ -51,3 +56,27 @@ canvas{
     left: 0;
     z-index: 1;
 }
+#left-side{
+    background-color: green;
+}
+#vehicle-gif{
+    position: absolute;
+    background-color: black;
+    top: 60%;
+    left: 75%;
+    bottom: 10%;
+    right: 5%;
+    // top: 100%;
+    // left: 60%;
+    // transform: translate(-50%, -50%);
+    // text-align: left;
+}
+.end-message{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    font-size: 50px;
+}
+

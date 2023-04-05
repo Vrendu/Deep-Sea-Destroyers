@@ -19,6 +19,8 @@ class GameView{
 
     setUp(restart) {
         //this.paused = true;
+        const message = document.getElementById("end-message");
+        //document.body.removeChild(message);
         console.log("we have hit setup function");
         const startbutton = document.createElement("button");
         startbutton.textContent = "Start!";
@@ -27,12 +29,15 @@ class GameView{
         startbutton.addEventListener("click", () => {
             this.start();
             container.removeChild(startbutton);
+           container.removeChild(message);
         });
         if (restart){
                 cancelAnimationFrame(this.animation);
                 this.game = new Game(this);
                 this.ship = this.game.addShip();
         }
+        
+        
 
     }
     
