@@ -55,6 +55,13 @@ canvas{
 }
 
 #pause-button {
+    font-size: 30px;
+    background-color: blueviolet;
+    font-family: Arial, Helvetica, sans-serif;
+    //border: white;
+    border: rgb(128, 127, 127) 2px solid;
+    border-style: outset;
+    padding: 5px;
     position: absolute;
     bottom: 0;
     left: 0;
