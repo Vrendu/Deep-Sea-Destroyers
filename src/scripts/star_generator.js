@@ -27,7 +27,6 @@ export function generateStars(){
             ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
             ctx.fill();
 
-            // Move stars
             star.x -= star.speed;
             if (star.x < -star.size) {
                 star.x = canvas.width + star.size;
