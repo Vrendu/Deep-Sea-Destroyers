@@ -26,6 +26,8 @@ In Deep Space Destroyers, users will be able to:
   - links are provided to my Github and LinkedIn profiles to get more information about me and my other projects. 
 
 
+
+
 Libraries used:
 - Canvas API
   - Layered game canvas, gif canvas and textbox canvas over an underlying canvas which renders the moving stars in the background. 
