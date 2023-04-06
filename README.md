@@ -26,9 +26,13 @@ In Deep Space Destroyers, users will be able to:
 
 Libraries used:
 - Canvas API
+  - Layered game canvas, gif canvas and textbox canvas over an underlying canvas which renders the moving stars in the background. 
+  - Game canvas is where main game is rendered, utilizes GameObject, Game, GameView, Ship, Enemy and Projectile classes in Javascript to define the         behaviors and functionality described above. 
+  - the gif and textbox are each rendered on a separate canvas, the functionality to do this is defined in the entry javascript file. 
+  - stars are created in a star generator function defined and exported from its own Javascript file. Array of stars of varying sizes and speeds is created and drawn on the canvas, and each star is moved every frame of the animation. The varying sizes and speeds gives the 3-dimensional effect of the background.
+  - All other animations are rendered using spritesheets to display a specific different image every frame, giving the desired effect.  
 - Keymaster
-
-
+  - keymaster library used to track user input necessary to move the ship and fire projectiles. Uses WASD keys to move and the spacebar to shoot.    
 
 
 
