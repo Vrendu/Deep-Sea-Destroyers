@@ -121,8 +121,6 @@ class Game {
     }
 
     generateEnemyPosition(count) {
-        // for now, manually entering the positions, when refactoring the code
-        // want to figure out a way to make this more dynamic.
         if (count === 1){
             return [60, 50];
         }
@@ -136,14 +134,13 @@ class Game {
     wrap(pos, vel) {
         let x_pos = pos[0];
         let x_vel = vel[0];
-        if (x_pos >= 669 || x_pos <= 30) {
+        if (x_pos >= 650 || x_pos <= 30) {
             x_vel = x_vel * -1;
         } 
         return [x_vel, vel[1]];
     }
 
-    // Something to update when you can, delegate removing responsibility 
-    // to the objects themselves, as you add more objects, and simplify this code
+    
     remove(object){
         switch (true) {
             case object instanceof Projectile:
