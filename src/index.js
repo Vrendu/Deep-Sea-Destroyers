@@ -1,12 +1,14 @@
 import Game from "./scripts/game.js";
 import GameView from "./scripts/game_view.js";
+import * as StarGenerator from "./scripts/star_generator.js"
 
-
+StarGenerator.generateStars();
 
 document.addEventListener("DOMContentLoaded", () => {
 
     animateTextBox();
     animateGif();
+   displayControls();
 
     const canvasEl = document.getElementById("game-canvas");
     canvasEl.width = Game.DIM_X;
@@ -49,7 +51,7 @@ function animateGif() {
 function animateTextBox(){
      const textCanvas = document.getElementById("text-gif");
      const ctx2 = textCanvas.getContext("2d");
-     textCanvas.height = 200;
+     textCanvas.height = 300;
      textCanvas.width = 420;
       const textbox = new Image();
     textbox.src = "assets/textbox.png";
@@ -65,3 +67,17 @@ function animateTextBox(){
         update();
     }
 }
+
+function displayControls() {
+    const canvas = document.getElementById("controls");
+    const context = canvas.getContext("2d");
+    canvas.height = 300;
+    canvas.width = 300;
+
+    const controls = new Image();
+    controls.addEventListener('load', function () {
+        context.drawImage(controls, 0, 0, 970, 647, 0, 0, canvas.width, canvas.height);
+    });
+    controls.src = "assets/controls.png";
+}
+

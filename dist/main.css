@@ -1,6 +1,12 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
+body {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
 button {
   font-size: 30px;
   background-color: blueviolet;
@@ -10,12 +16,6 @@ img {
   position: relative;
   height: 700px;
   width: 700px;
-}
-
-body {
-  background-color: black;
-  display: flex;
-  justify-content: space-between;
 }
 
 canvas {
@@ -49,7 +49,7 @@ canvas {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-45%, -50%);
   text-align: left;
 }
 
@@ -72,7 +72,37 @@ canvas {
 
 #text-gif {
   position: absolute;
-  top: 10%;
-  right: 20%;
-  left: 70%;
+  top: 10vh;
+  left: 70vw;
+}
+
+.controls {
+  position: absolute;
+  left: 5vw;
+  top: 50vh;
+  max-height: 100%;
+  z-index: -2;
+}
+
+#star-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#links a {
+  color: white;
+  font-family: sans-serif;
+  position: absolute;
+}
+
+#links a:first-child {
+  top: 20vh;
+  left: 12vw;
+}
+
+#links a:last-child {
+  top: 25vh;
+  left: 11.5vw;
 }

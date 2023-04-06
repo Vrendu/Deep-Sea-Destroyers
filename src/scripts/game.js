@@ -102,13 +102,11 @@ class Game {
     }
 
     addEnemies() {
-        console.log("added enemies");
         let count = 0;
         for (let i = 0; i < Game.NUM_ENEMIES; i++) {
             count += 1
             this.add(new Enemy({ game: this, pos: this.generateEnemyPosition(count) }));
         }
-        console.log(this);
     }
 
     addShip() {
@@ -124,7 +122,7 @@ class Game {
 
     generateEnemyPosition(count) {
         // for now, manually entering the positions, when refactoring the code
-        // figure out a way to make this more dynamic.
+        // want to figure out a way to make this more dynamic.
         if (count === 1){
             return [60, 50];
         }
@@ -139,7 +137,6 @@ class Game {
         let x_pos = pos[0];
         let x_vel = vel[0];
         if (x_pos >= 669 || x_pos <= 30) {
-            console.log("HELLO!!!!!");
             x_vel = x_vel * -1;
         } 
         return [x_vel, vel[1]];

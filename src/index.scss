@@ -1,3 +1,10 @@
+body{
+    background-color: black;
+    display: flex;
+   justify-content: space-between;
+}
+
+
 button{
     font-size: 30px;
     background-color: blueviolet;
@@ -9,11 +16,7 @@ img{
     width: 700px;
 }
 
-body{
-    background-color: black;
-    display: flex;
-   justify-content: space-between;
-}
+
 
 canvas{
     display: flex;
@@ -22,8 +25,9 @@ canvas{
 
 #game-canvas{
     position: absolute;
-    top: calc(50vh - 240px);
+     top: calc(50vh - 240px);
     left: calc(50vw - 360px);
+    
     
 }
 .start-button{
@@ -46,7 +50,7 @@ canvas{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-45%, -50%);
     text-align: left;
 }
 
@@ -67,7 +71,34 @@ canvas{
 }
 #text-gif{
     position: absolute;
-    top: 10%;
-    right: 20%;
-    left: 70%;
+    top: calc(10vh);
+    left: calc(70vw);
+}
+
+.controls{
+    position: absolute;
+    left: calc(5vw);
+    top: calc(50vh);
+    max-height: 100%;
+    z-index: -2;
+}
+
+#star-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+#links a {
+    color: white;
+    font-family: sans-serif;
+    position: absolute;
+}
+#links a:first-child {
+    top: calc(20vh);
+    left: calc(12vw);
+}
+#links a:last-child {
+    top: calc(25vh);
+    left: calc(11.5vw);
 }

@@ -37,7 +37,6 @@ class Ship extends GameObject{
         });
 
         this.game.add(proj);
-        console.log("fired");
     }
 
     collideWith(otherObject){
