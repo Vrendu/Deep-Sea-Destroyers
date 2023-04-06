@@ -14,9 +14,7 @@ In Deep Space Destroyers, users will be able to:
 
 <img width="500" alt="Start Screen" src="https://user-images.githubusercontent.com/93363393/230449660-1b162e7b-0cb3-4d89-8c30-2b913c8d69e7.png">
     - user can click start button here to start playing the game.
-<img width="500" alt="Pause Button screenshot" src="https://user-images.githubusercontent.com/93363393/230449737-17a74b9b-38ec-40c4-a6a4-c1fc075740b0.png">
-<img width="500" alt="Play Button screenshot" src="https://user-images.githubusercontent.com/93363393/230449812-7926f794-96a7-4948-b821-5e9471be7daa.png">
-    - as seen in these two images, user can pause and unpause game by clicking the pause button located in the bottom left of game canvas, and the button text will toggle between "Pause" and "Play" as needed. 
+    - user can pause and unpause game by clicking the pause button located in the bottom left of game canvas, and the button text will toggle between "Pause" and "Play" as needed. 
 <img width="500" alt="restart screenshot" src="https://user-images.githubusercontent.com/93363393/230451303-161017e9-1ec6-4b4a-9f58-6da945652c4a.png">
     - upon game ending (either if user ship runs out of health, or all enemies are defeated), the restart button pops up giving the user ability to press restart and end up back at the start screen, in order to start a new game. 
 
