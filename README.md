@@ -56,7 +56,9 @@ Libraries used:
       }
     ``` 
   
-  - Game canvas is where main game is rendered. The Game class contains instances of GameView, Ship, Projectile, and Enemy classes which each define their unique functionality and behavior: ``` 
+  - Game canvas is where main game is rendered. The Game class contains instances of GameView, Ship, Projectile, and Enemy classes which each define their unique functionality and behavior: 
+  
+        ``` 
         class Game {
             constructor(gameview){
             this.enemies = [];
