@@ -72,6 +72,7 @@ Libraries used:
        
   - the gif and textbox are each rendered on a separate canvas, the functionality to do this is defined in the entry javascript file. 
     - For example, to animate the text box:  ```
+    
         function animateTextBox(){
             const textCanvas = document.getElementById("text-gif");
             const ctx2 = textCanvas.getContext("2d");
@@ -91,10 +92,12 @@ Libraries used:
                 update();
             }
         }
+        
         ```
   - All other animations are rendered using spritesheets to display a specific different image every frame, giving the desired effect. 
     - For example: ``` 
-      class Projectile extends GameObject {
+    
+          class Projectile extends GameObject {
 
           static RADIUS = 2;
           static SPEED = 15;
@@ -123,6 +126,7 @@ Libraries used:
               this.currentFrame = (this.currentFrame + 1) % this.numFrames;
           }
       }
+      
     ```
 - Keymaster
   - keymaster library used to track user input necessary to move the ship and fire projectiles. Uses WASD keys to move and the spacebar to shoot.    
