@@ -176,27 +176,12 @@ class Game {
             restartButton.addEventListener("click", () => {
                 document.body.removeChild(restartButton);
                 this.gameview.setUp(true);  
-            
             });
             const message = document.createElement("div");
-            message.classList = "end-message"
-            if (this.enemies.length === 0){
-                message.textContent = "You Win!";
-                message.style.color = "yellow";
-            } else if (this.ships.length === 0){
-                message.textContent = "Try Again";
-                message.style.color = "red";
-            }
-            
-
-            document.body.appendChild(message);
+       
             document.body.appendChild(restartButton);
-        }
-        
+        }   
     }
-
-    
-    
 }
 
 export default Game;

@@ -18,27 +18,19 @@ class GameView{
     };
 
     setUp(restart) {
-        //this.paused = true;
-        const message = document.getElementById("end-message");
-        //document.body.removeChild(message);
-        console.log("we have hit setup function");
         const startbutton = document.createElement("button");
         startbutton.textContent = "Start!";
         startbutton.classList.add("start-button");
-        container.append(startbutton);
+        game.append(startbutton);
         startbutton.addEventListener("click", () => {
             this.start();
-            container.removeChild(startbutton);
-           container.removeChild(message);
+            game.removeChild(startbutton);
         });
         if (restart){
                 cancelAnimationFrame(this.animation);
                 this.game = new Game(this);
                 this.ship = this.game.addShip();
         }
-        
-        
-
     }
     
 
@@ -54,7 +46,6 @@ class GameView{
     }
 
     start() {
-        //this.pauseButton = this.pauseButton || 
         this.bindKeyHandlers();
         this.lastTime = 0;
         let pauseButton = document.getElementById('pause-button');

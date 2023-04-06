@@ -13,9 +13,9 @@ class Projectile extends GameObject {
         this.enemyProjectileSheet = new Image();
         this.enemyProjectileSheet.src = "assets/flame_glow.png";
         this.currentFrame = 0;
-        this.eachWidth = 128; // Width of each frame in pixels
-        this.eachHeight = 128; // Height of each frame in pixels
-        this.numFrames = 16; // Total number of frames in the spritesheet
+        this.eachWidth = 128; 
+        this.eachHeight = 128; 
+        this.numFrames = 16; 
     }
 
     draw(ctx) {

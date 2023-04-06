@@ -45,7 +45,7 @@ canvas {
   z-index: 1;
 }
 
-#container {
+#game {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -60,10 +60,6 @@ canvas {
   z-index: 1;
 }
 
-#left-side {
-  background-color: green;
-}
-
 #vehicle-gif {
   position: absolute;
   background-color: black;
@@ -71,13 +67,12 @@ canvas {
   left: 75%;
   bottom: 10%;
   right: 5%;
+  z-index: -1;
 }
 
-.end-message {
+#text-gif {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: left;
-  font-size: 50px;
+  top: 10%;
+  right: 20%;
+  left: 70%;
 }
