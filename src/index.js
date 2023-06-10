@@ -1,3 +1,4 @@
+//import { set } from "core-js/core/dict";
 import Game from "./scripts/game.js";
 import GameView from "./scripts/game_view.js";
 import * as StarGenerator from "./scripts/star_generator.js"
@@ -59,9 +60,15 @@ function animateTextBox(){
     const textWidth = 594;
     const textHeight = 168;
     function update() {
+
         ctx2.drawImage(textbox, textFrame * textWidth, 0, textWidth, textHeight, 0, 0, textCanvas.width, textCanvas.height);
         textFrame = (textFrame + 1) % 108;
-        requestAnimationFrame(update);
+       
+        setTimeout(() => {    
+            requestAnimationFrame(update);
+        }, 50);
+        
+        
     }
     textbox.onload = function () {
         update();

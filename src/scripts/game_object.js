@@ -14,7 +14,7 @@ class GameObject {
     isCollidedWith(otherObject) {
 
         const centerDist = Util.dist(this.pos, otherObject.pos);
-        return centerDist < 20;
+        return centerDist < 35;
     }
 
     collideWith(otherObject){
