@@ -1,6 +1,7 @@
 import Enemy from "./enemy.js";
 import Ship from "./ship.js";
 import Projectile from "./projectile.js";
+import Explosion from "./explosion.js";
 
 
 class Game {
@@ -8,6 +9,7 @@ class Game {
         this.enemies = [];
         this.projectiles = [];
         this.ships = [];
+        this.explosions = [];
         this.points = 0;
         this.addEnemies();   
         this.gameview = gameview;
@@ -37,11 +39,13 @@ class Game {
         ctx.textAlign = 'right';
         ctx.fillStyle = "white";
         ctx.fillText("SCORE: " + this.points, Game.DIM_X - 50,Game.DIM_Y - 100);
-        ctx.fillText("HEALTH: " + this.ships[0].health, Game.DIM_X - 50, Game.DIM_Y - 50);
+        if (this.ships[0]){
+            ctx.fillText("HEALTH: " + this.ships[0].health, Game.DIM_X - 50, Game.DIM_Y - 50);
+        }
     }
 
     allObjects() {
-        return [].concat(this.ships, this.enemies, this.projectiles);
+        return [].concat(this.ships, this.enemies, this.projectiles, this.explosions);
     }
 
     step(delta) {
@@ -61,10 +65,12 @@ class Game {
 
     fireEnemyProjectiles(){
         this.enemies.forEach((enemy) => {
-            if (enemy.pos[0] - this.ships[0].pos[0] < 2 && 
-               enemy.pos[0] - this.ships[0].pos[0] > -2){
-                enemy.fireProjectile();
-            }           
+            if (this.ships[0]){
+                if (enemy.pos[0] - this.ships[0].pos[0] < 2 && 
+                enemy.pos[0] - this.ships[0].pos[0] > -2){
+                    enemy.fireProjectile();
+                }      
+            }     
         });
     }
 
@@ -75,7 +81,7 @@ class Game {
                 const obj1 = allObjects[i];
                 const obj2 = allObjects[j];
 
-                if (obj1.isCollidedWith(obj2)) {
+                if (obj1.isCollidedWith(obj2) && !(obj1 instanceof Explosion) && !(obj2 instanceof Explosion)) {
                     obj1.collideWith(obj2); 
                 }
             }
@@ -84,7 +90,9 @@ class Game {
 
     moveObjects(delta) {
         this.allObjects().forEach((object) => {
-            object.move(delta);
+            if (!(object instanceof Explosion)){
+                object.move(delta);
+            }
         });
         
     }
@@ -96,7 +104,10 @@ class Game {
             this.projectiles.push(object);
         } else if (object instanceof Ship) {
             this.ships.push(object);
-        } else {
+        } else if (object instanceof Explosion){
+            this.explosions.push(object);
+        }  
+        else {
             throw new Error("unknown type of object");
         }
     }
@@ -125,9 +136,9 @@ class Game {
             return [60, 50];
         }
         else if (count === 2){
-            return [200, 110];
+            return [200, 130];
         } else {
-            return [100, 160];
+            return [100, 230];
         }
     }
 
@@ -152,12 +163,23 @@ class Game {
             case object instanceof Ship:
                 this.ships.splice(this.ships.indexOf(object), 1);
                 break;
+            case object instanceof Explosion:
+                this.explosions.splice(this.explosions.indexOf(object), 1);
+                break;
             default:
                 throw new Error("unknown type of object");
         }
-        if (object instanceof Ship || this.enemies.length === 0){
+        if (this.enemies.length === 0){
             this.gameOver();
-        };
+        }
+        if (object instanceof Ship){
+            this.gameOver();
+            let explosion = new Explosion({pos: object.pos, game: this, vel: object.vel});
+            this.add(new Explosion(explosion));
+            setTimeout(() => {
+                this.remove(explosion);
+            }, 1500);
+        }
     }
        
 

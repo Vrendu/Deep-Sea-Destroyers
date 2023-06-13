@@ -1,7 +1,7 @@
 import GameObject from "./game_object";
 import * as Util from "./util.js";
 import Projectile from "./projectile";
-
+import Explosion from "./explosion";
 class Enemy extends GameObject{
 
     static RADIUS = 15;
@@ -10,7 +10,7 @@ class Enemy extends GameObject{
     constructor(options = {}) {   
         options.radius = Enemy.RADIUS;
         options.vel = options.vel || Util.enemyVec(Enemy.SPEED);
-        options.health = 50;
+        options.health = 30;
         super(options);
         this.img = new Image();
         this.img.src = "assets/scout_enemy.png";
@@ -40,14 +40,29 @@ class Enemy extends GameObject{
     }
     
     collideWith(otherObject) {
+        const explosion = new Explosion({pos: this.pos, game: this.game, vel: this.vel});
         if (otherObject.vel[1] < 0) {
             this.health -= 1;
             this.game.remove(otherObject);
             this.game.points += 10;
+            
+            this.game.add(explosion);
+            setTimeout(() => {
+                this.game.remove(explosion);
+            }, 100);    
         }
         if (this.health === 0){
-            this.game.remove(this);
+            
+            this.game.add(explosion);
+            setTimeout(() => {
+                this.game.remove(explosion);  
+                  
+            }, 1500);
+            //setTimeout(() => {
+                this.game.remove(this);
+            //}, 1000);  
         }
+       
     }
 }
 

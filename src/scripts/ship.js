@@ -3,6 +3,8 @@ const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 import GameObject from "./game_object";
 import Projectile from "./projectile";
 import * as Util from "./util.js";
+import Game from "./game.js";
+import Explosion from "./explosion";
 
 class Ship extends GameObject{
     
@@ -11,7 +13,7 @@ class Ship extends GameObject{
     constructor(options) {
         options.radius = Ship.RADIUS;
         options.vel = options.vel || [0, 0];
-        options.health = 50;
+        options.health = 30;
         super(options);
         this.img = new Image();
         this.img.src = "assets/ship_1.png";
@@ -22,8 +24,20 @@ class Ship extends GameObject{
     }
 
     moveShip(shipDir) {
-        this.pos[0] += shipDir[0];
-        this.pos[1] += shipDir[1];
+        
+        const speed = 14; 
+
+        // Calculate the new position based on ship's direction and speed
+        const newPos = [
+            this.pos[0] + shipDir[0] * speed,
+            this.pos[1] + shipDir[1] * speed
+        ];
+        if (newPos[0] <= 640 && newPos[0] >= 0){
+            // Update the ship's position gradually using interpolation
+            const easing = 0.1; // Adjust the easing value for smoother movement
+            this.pos[0] += (newPos[0] - this.pos[0]) * easing;
+            this.pos[1] += (newPos[1] - this.pos[1]) * easing;
+        }
     }
 
     fireProjectile(){
@@ -40,6 +54,7 @@ class Ship extends GameObject{
     }
 
     collideWith(otherObject){
+        const explosion = new Explosion({pos: this.pos, game: this.game, vel: this.vel});
         if (otherObject.vel[1] > 1){
             this.health -= 1;
             this.game.points -= 5;
@@ -47,9 +62,21 @@ class Ship extends GameObject{
                 this.game.points = 0;
             }
             this.game.remove(otherObject);
+            this.game.add(explosion);
+            setTimeout(() => {
+                this.game.remove(explosion);
+            }, 100);
+
         }
         if (this.health == 0){
+            this.game.add(explosion);
+            setTimeout(() => {
+                this.game.remove(explosion);
+
+            }, 1500);
+           // setTimeout(() => {
             this.game.remove(this)
+            //}, 1500);
         }
     }
 }
