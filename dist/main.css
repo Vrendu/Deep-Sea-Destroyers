@@ -82,8 +82,11 @@ canvas {
   top: 10vh;
   left: 70vw;
 }
+#text-gif:hover {
+  transform: scale(1.1);
+}
 
-.controls {
+#controls {
   position: absolute;
   left: 5vw;
   top: 50vh;
@@ -99,9 +102,14 @@ canvas {
 }
 
 #links a {
+  text-decoration: none;
   color: white;
   font-family: sans-serif;
+  font-size: large;
   position: absolute;
+}
+#links a:hover {
+  transform: scale(1.2);
 }
 
 #links a:first-child {

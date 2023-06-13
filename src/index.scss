@@ -77,13 +77,18 @@ canvas{
     right: 5%;
     z-index: -1;
 }
+
+
 #text-gif{
     position: absolute;
     top: calc(10vh);
     left: calc(70vw);
+    &:hover {
+            transform: scale(1.1);
+        }
 }
 
-.controls{
+#controls{
     position: absolute;
     left: calc(5vw);
     top: calc(50vh);
@@ -98,9 +103,14 @@ canvas{
     z-index: -1;
 }
 #links a {
+    text-decoration: none;
     color: white;
     font-family: sans-serif;
+    font-size: large;
     position: absolute;
+    &:hover {
+        transform: scale(1.2);
+    }
 }
 #links a:first-child {
     top: calc(20vh);

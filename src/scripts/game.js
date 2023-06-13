@@ -2,7 +2,7 @@ import Enemy from "./enemy.js";
 import Ship from "./ship.js";
 import Projectile from "./projectile.js";
 import Explosion from "./explosion.js";
-
+import Laser from "./laser.js";
 
 class Game {
     constructor(gameview){
@@ -10,8 +10,9 @@ class Game {
         this.projectiles = [];
         this.ships = [];
         this.explosions = [];
+        this.laser = new Laser({pos: [0, 330], game: this});
         this.points = 0;
-        this.addEnemies();   
+        this.addEnemies(); 
         this.gameview = gameview;
     }
 
@@ -21,8 +22,6 @@ class Game {
     static DIM_Y = 700;
 
     static NUM_ENEMIES = 3;
-
-   
 
     draw(ctx) {
         ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
@@ -45,7 +44,7 @@ class Game {
     }
 
     allObjects() {
-        return [].concat(this.ships, this.enemies, this.projectiles, this.explosions);
+        return [].concat(this.ships, this.enemies, this.projectiles, this.explosions, this.laser);
     }
 
     step(delta) {
@@ -81,7 +80,7 @@ class Game {
                 const obj1 = allObjects[i];
                 const obj2 = allObjects[j];
 
-                if (obj1.isCollidedWith(obj2) && !(obj1 instanceof Explosion) && !(obj2 instanceof Explosion)) {
+                if (obj1.isCollidedWith(obj2)) {
                     obj1.collideWith(obj2); 
                 }
             }
@@ -90,7 +89,7 @@ class Game {
 
     moveObjects(delta) {
         this.allObjects().forEach((object) => {
-            if (!(object instanceof Explosion)){
+            if (!(object instanceof Explosion) && !(object instanceof Laser)){
                 object.move(delta);
             }
         });
@@ -116,7 +115,7 @@ class Game {
         let count = 0;
         for (let i = 0; i < Game.NUM_ENEMIES; i++) {
             count += 1
-            this.add(new Enemy({ game: this, pos: this.generateEnemyPosition(count) }));
+            this.add(new Enemy({ game: this, pos: this.generateEnemyPosition(count), id: count }));
         }
     }
 
@@ -136,9 +135,9 @@ class Game {
             return [60, 50];
         }
         else if (count === 2){
-            return [200, 130];
+            return [200, 110];
         } else {
-            return [100, 230];
+            return [100, 170];
         }
     }
 
@@ -152,13 +151,18 @@ class Game {
     }
 
     
-    remove(object){
+    remove(object, index = null){
         switch (true) {
             case object instanceof Projectile:
                 this.projectiles.splice(this.projectiles.indexOf(object), 1);
                 break;
             case object instanceof Enemy:
-                this.enemies.splice(this.enemies.indexOf(object), 1);
+                this.enemies.forEach((enemy) => {
+                    // if the enemy's id is index, remove
+                    if (enemy.id === index){
+                        this.enemies.splice(this.enemies.indexOf(enemy), 1);
+                    }
+                });
                 break;
             case object instanceof Ship:
                 this.ships.splice(this.ships.indexOf(object), 1);

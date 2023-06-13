@@ -15,6 +15,7 @@ class Enemy extends GameObject{
         this.img = new Image();
         this.img.src = "assets/scout_enemy.png";
         this.pos = options.pos;
+        this.id = options.id;
     }
 
     draw(ctx) {
@@ -51,16 +52,13 @@ class Enemy extends GameObject{
                 this.game.remove(explosion);
             }, 100);    
         }
-        if (this.health === 0){
-            
+        if (this.health === 0){     
             this.game.add(explosion);
             setTimeout(() => {
                 this.game.remove(explosion);  
                   
             }, 1500);
-            //setTimeout(() => {
-                this.game.remove(this);
-            //}, 1000);  
+            this.game.remove(this, this.id);
         }
        
     }

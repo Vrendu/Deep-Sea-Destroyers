@@ -32,12 +32,22 @@ class Ship extends GameObject{
             this.pos[0] + shipDir[0] * speed,
             this.pos[1] + shipDir[1] * speed
         ];
-        if (newPos[0] <= 640 && newPos[0] >= 0){
+        if (newPos[0] <= 640 && newPos[0] >= 0 && newPos[1] <= 750 && newPos[1] >= 190){
             // Update the ship's position gradually using interpolation
             const easing = 0.1; // Adjust the easing value for smoother movement
             this.pos[0] += (newPos[0] - this.pos[0]) * easing;
             this.pos[1] += (newPos[1] - this.pos[1]) * easing;
+
+            if (this.pos[1] <= 330){
+                this.health -= 3;
+                const explosion = new Explosion({pos: this.pos, game: this.game, vel: this.vel});
+                this.game.add(explosion);
+                setTimeout(() => {
+                    this.game.remove(explosion);
+                }, 1000);
+            }
         }
+
     }
 
     fireProjectile(){
@@ -74,9 +84,7 @@ class Ship extends GameObject{
                 this.game.remove(explosion);
 
             }, 1500);
-           // setTimeout(() => {
-            this.game.remove(this)
-            //}, 1500);
+            this.game.remove(this);
         }
     }
 }
