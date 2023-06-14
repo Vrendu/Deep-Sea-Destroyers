@@ -13,13 +13,6 @@ class Laser extends GameObject {
     }
 
     draw(ctx) {
-        // ctx.beginPath();
-        // ctx.moveTo(this.pos[0], this.pos[1]);
-        // ctx.lineTo(this.pos[0] + 700, this.pos[1]);
-        // ctx.lineWidth = 5;
-        // ctx.strokeStyle = "red";
-        // ctx.stroke();
-        // use spritesheet instead, it's 5 by 5
         let row = Math.floor(this.currentFrame / 5);
         let col = this.currentFrame % 5;
         ctx.drawImage(

@@ -83,9 +83,6 @@ canvas{
     position: absolute;
     top: calc(10vh);
     left: calc(70vw);
-    &:hover {
-            transform: scale(1.1);
-        }
 }
 
 #controls{

@@ -82,9 +82,6 @@ canvas {
   top: 10vh;
   left: 70vw;
 }
-#text-gif:hover {
-  transform: scale(1.1);
-}
 
 #controls {
   position: absolute;
