@@ -11,7 +11,7 @@ In Deep Space Destroyers, users will be able to:
 
 - use the keyboard to move ship freely and shoot projectiles to kill enemy ships
 
-<img width="500" alt="gameplay" src="[https://user-images.githubusercontent.com/93363393/230490974-c983f190-0697-4f04-b330-2a1a9e0db302.png]">
+<img width="500" alt="gameplay" src="https://user-images.githubusercontent.com/93363393/230490974-c983f190-0697-4f04-b330-2a1a9e0db302.png">
 
 
 
