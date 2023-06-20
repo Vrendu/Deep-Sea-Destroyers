@@ -11,23 +11,19 @@ In Deep Space Destroyers, users will be able to:
 
 - use the keyboard to move ship freely and shoot projectiles to kill enemy ships
 
-
-
 ![Gameplay](https://github.com/Vrendu/Deep-Space-Destroyers/assets/93363393/fabb1ce6-2f4d-4034-8249-bf6089cdb5b8)
 
 - utilize start, pause, and restart buttons to pause, start, and restart the game respectively.
 
 
-<img width="500" alt="Start Screen" src="https://user-images.githubusercontent.com/93363393/230449660-1b162e7b-0cb3-4d89-8c30-2b913c8d69e7.png">
-    - user can click start button here to start playing the game
-    - user can pause and unpause game by clicking the pause button located in the bottom left of game canvas, and the button text will toggle between "Pause" and "Play" as needed. 
-    
-<img width="500" alt="restart screenshot" src="https://user-images.githubusercontent.com/93363393/230451303-161017e9-1ec6-4b4a-9f58-6da945652c4a.png">
-    - upon game ending (either if user ship runs out of health, or all enemies are defeated), the restart button pops up giving the user ability to press restart and end up back at the start screen, in order to start a new game. 
+![Start Screen](https://github.com/Vrendu/Deep-Space-Destroyers/assets/93363393/0e7c11f4-0690-45b4-8229-b28f53f78f06)
+![Pause Button Screenshot](https://github.com/Vrendu/Deep-Space-Destroyers/assets/93363393/ebd053f9-dfdc-430d-b9fa-a422209d19da)
+![Play Button Screenshot](https://github.com/Vrendu/Deep-Space-Destroyers/assets/93363393/46c2c57f-f8df-4da9-91ab-0be6dd49fc39)
 
 
 - navigate to my Github and LinkedIn
-<img width="303" alt="links" src="https://user-images.githubusercontent.com/93363393/230450376-6c993c1d-27eb-48fa-b363-263dd027dc9f.png">
+![Links](https://github.com/Vrendu/Deep-Space-Destroyers/assets/93363393/84d3b815-71bc-48eb-a15b-90657c150670)
+
   - links are provided to my Github and LinkedIn profiles to get more information about me and my other projects. 
 
 
