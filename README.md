@@ -22,6 +22,7 @@ In Deep Space Destroyers, users will be able to:
 
 
 - navigate to my Github and LinkedIn
+  
 ![Links](https://github.com/Vrendu/Deep-Space-Destroyers/assets/93363393/84d3b815-71bc-48eb-a15b-90657c150670)
 
   - links are provided to my Github and LinkedIn profiles to get more information about me and my other projects. 
