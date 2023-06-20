@@ -11,9 +11,9 @@ In Deep Space Destroyers, users will be able to:
 
 - use the keyboard to move ship freely and shoot projectiles to kill enemy ships
 
-<img width="500" alt="gameplay" src="https://user-images.githubusercontent.com/93363393/230490974-c983f190-0697-4f04-b330-2a1a9e0db302.png">
 
 
+![Gameplay](https://github.com/Vrendu/Deep-Space-Destroyers/assets/93363393/fabb1ce6-2f4d-4034-8249-bf6089cdb5b8)
 
 - utilize start, pause, and restart buttons to pause, start, and restart the game respectively.
 
