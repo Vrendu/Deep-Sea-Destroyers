@@ -158,8 +158,7 @@ Libraries used:
         }
     }
     
-    export default Explosion;
-```
+    export default Explosion; ```
 
 
 
